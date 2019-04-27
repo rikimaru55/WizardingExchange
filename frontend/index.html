@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="rikimaru55">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+    <input type="text" id="amount">
+    <select id="convert">
+        <option value="gbp">GBP</option>
+        <option value="eur">EUR</option>
+        <option value="cad">CAD</option>
+        <option value="usd">USD</option>
+    </select>
+    <input type="submit" id="submit" value="Convert">
+    <pre id="result"></pre>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/pixi.js"></script>
+    <script src="js/scripts.js"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $('#submit').click(function(e){
+                e.preventDefault();
+                let data = {
+                    'amount' : $('#amount').val(),
+                    'convert' : $('#convert').val()
+                }
+                $.post( "/", data, function( result ) {
+                    $( "#result" ).html(JSON.stringify(result))
+                });
+            });
+        });
+    </script>
+</body>
+</html>
