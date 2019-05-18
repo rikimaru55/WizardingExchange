@@ -181,5 +181,5 @@ func loadConfigurationFile(file string) Config {
 func main() {
 	config = loadConfigurationFile("config.json")
 	http.HandleFunc("/", rootHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":5000", nil))
 }
