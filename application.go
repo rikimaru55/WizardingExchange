@@ -119,7 +119,8 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 
 		returnResponse(w, data)
 	} else if r.Method == "GET" {
-		http.NotFound(w, r)
+		w.Header().Set("Server", "A Go Web Server")
+  		w.WriteHeader(200)
 	}
 }
 
