@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"./simpleCache"
+	"github.com/rs/cors"
 )
 
 var config Config
@@ -180,6 +181,8 @@ func loadConfigurationFile(file string) Config {
 
 func main() {
 	config = loadConfigurationFile("config.json")
-	http.HandleFunc("/", rootHandler)
-	log.Fatal(http.ListenAndServe(":5000", nil))
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", rootHandler)
+	handler := cors.Default().Handler(mux)
+	log.Fatal(http.ListenAndServe(":8080", handler))
 }

@@ -15,3 +15,5 @@ TestPage.txt
 debug
 config.json
 /cache.json
+
+bin/
